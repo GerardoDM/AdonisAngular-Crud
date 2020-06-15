@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import {AuthService, TokenPaylaod} from '../auth.service'
 import { Router } from '@angular/router'
 
@@ -6,12 +6,16 @@ import { Router } from '@angular/router'
     templateUrl: './register.component.html'
 })
 
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
     credentials: TokenPaylaod = {
         id: 0,
         username: "",
         password: ""
     }
+
+    ngOnInit() {
+        console.log("hey")
+      }
 
     constructor(private auth: AuthService, private router: Router){}
 

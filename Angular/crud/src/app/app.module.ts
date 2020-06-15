@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
-import { RouterModule, Routes} from '@angular/router'
+import { RouterModule, Routes } from '@angular/router'
 
 import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
@@ -11,10 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes:Routes = [
-  {path: '', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
-
+  {path: 'login', component: LoginComponent}
 
 ]
 @NgModule({
@@ -23,6 +22,14 @@ const routes:Routes = [
     DashboardComponent,
     LoginComponent,
     RegisterComponent
+  ],
+  exports: [
+
+    AppComponent,
+    DashboardComponent,
+    LoginComponent,
+    RegisterComponent
+
   ],
   imports: [
     BrowserModule,

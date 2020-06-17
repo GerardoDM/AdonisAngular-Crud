@@ -1,5 +1,8 @@
 'use strict'
 
+const Personaje = require('../app/Models/Personaje')
+const PersonajeController = require('../app/Controllers/Http/PersonajeController')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -26,3 +29,8 @@ Route.post('register' , 'UserController.register')
 
 //Personajes
 Route.post('create' , 'PersonajeController.create')
+Route.delete('delete/:id', 'PersonajeController.destroy')
+Route.patch('update/:id', 'PersonajeController.update')
+Route.get('index', 'PersonajeController.index')
+
+

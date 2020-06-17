@@ -17,6 +17,28 @@ class PersonajeController {
         await personaje.save()
         return personaje;
     }
+
+    async destroy({params}){
+        const {id} = params;
+        const personaje = await Personaje.find(id);
+        await personaje.delete();
+        return personaje;
+    }
+
+    async update({params, request}){
+        const {id} = params;
+        const personaje = await Personaje.find(id);
+        personaje.merge(request.all())
+        await personaje.save();
+        return personaje;
+    }
+
+    async index ({response}) {
+        let personajes = await Personaje.all()
+
+        return response.json(personajes)
+      }
+
 }
 
 module.exports = PersonajeController

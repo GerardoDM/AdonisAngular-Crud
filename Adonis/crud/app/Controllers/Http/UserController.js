@@ -17,7 +17,9 @@ class UserController {
 
         const {username, password} = request.only(['username', 'password'])
 
-        await User.create({username, password})
+       let user = await User.create({username, password})
+
+        return user
 
 
     }

@@ -24,13 +24,24 @@ Route.get('/', () => {
 })
 
 //Users
-Route.post('login' , 'UserController.login')
-Route.post('register' , 'UserController.register')
+Route.group(() => {
+
+  Route.post('login' , 'UserController.login')
+  Route.post('register' , 'UserController.register')
+
+}).prefix('users')
+
 
 //Personajes
-Route.post('create' , 'PersonajeController.create')
-Route.delete('delete/:id', 'PersonajeController.destroy')
-Route.patch('update/:id', 'PersonajeController.update')
-Route.get('index', 'PersonajeController.index')
+Route.group(() => {
+
+  Route.post('create' , 'PersonajeController.create')
+  Route.delete('delete/:id', 'PersonajeController.destroy')
+  Route.patch('update/:id', 'PersonajeController.update')
+  Route.get('index', 'PersonajeController.index')
+
+}).prefix('personajes')
+
+
 
 

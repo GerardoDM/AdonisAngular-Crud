@@ -41,11 +41,11 @@ export class AuthService{
         }
 
         public register(user: TokenPaylaod): Observable<any>{
-            return this.http.post('/register', user)
+            return this.http.post('users/register', user)
         }
 
         public login(user: TokenPaylaod): Observable<any>{
-            const base = this.http.post('/login', user)
+            const base = this.http.post('users/login', user)
 
             const request = base.pipe(
                 map((data: Token) => {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AuthService } from './auth.service';
 import { PersonajesService } from './personajes.service';
@@ -18,9 +19,13 @@ const routes:Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'form', component: FormPersonajesComponent},
+  { 
+    path: 'form',
+    component: FormPersonajesComponent,
+    canActivate: [AuthGuardService] 
+  },
   { path: '**', component: LoginComponent },
-  { path: '/', component: LoginComponent  }
+  
 
 
 
@@ -42,18 +47,23 @@ const routes:Routes = [
     FormPersonajesComponent
 
   ],
+
+  
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    
+
   ],
-  providers: [AuthService, AuthGuardService, PersonajesService,{
+  providers: [AuthService, AuthGuardService, JwtHelperService, PersonajesService,{
     provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-  }],
+  }, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+  JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,7 +26,7 @@ export interface TokenPaylaod {
 @Injectable()
 export class AuthService{
     private token: string
-    constructor (private http:HttpClient, private router:Router, public jwtHelper: JwtHelperService){}
+    constructor (private http:HttpClient, private router:Router, private jwtHelper: JwtHelperService){}
 
         private guardarToken(token: string): void {
             localStorage.setItem('token', token)

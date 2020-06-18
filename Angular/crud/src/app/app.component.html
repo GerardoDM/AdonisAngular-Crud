@@ -11,6 +11,10 @@
       <a routerLink="/register"href="/register" class="nav-item nav-link">Register</a>
       <a routerLink="/dashboard" href="/dashboard"class="nav-item nav-link">Dashboard</a>
       <a routerLink="/form" href="/form"class="nav-item nav-link">Personajes</a>
+      <li *ngIf="auth.isAuthenticated()" class="nav-item">
+        <a class="nav-link" (click)="auth.logout()">Logout</a>
+
+      </li>
 
      
     </div>

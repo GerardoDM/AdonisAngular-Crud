@@ -11,6 +11,7 @@ export interface Personaje {
   nombre: string
   raza: string
   clase: string
+  editMode : Boolean
 }
 
 
@@ -36,5 +37,10 @@ export class PersonajesService {
       const url  = `personajes/delete/${id}`
       return this.http.delete(url)
 
+    }
+
+    public edit(personaje: Personaje): Observable<Personaje>{
+      const url  = `personajes/update/${personaje.id}`
+      return this.http.patch<Personaje>(url, personaje)
     }
 }

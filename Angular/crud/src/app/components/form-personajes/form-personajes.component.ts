@@ -14,7 +14,8 @@ export class FormPersonajesComponent implements OnInit {
     id: 0,
     nombre: "",
     raza: "",
-    clase:""
+    clase:"",
+    editMode: false
 }
 
   personajesList : Personaje[]
@@ -26,16 +27,33 @@ export class FormPersonajesComponent implements OnInit {
   }
 
   create(){
-    this.personajes.create(this.datos).subscribe(
+
+    if (this.datos.editMode = true){
+      return this.personajes.edit(this.datos).subscribe()
+    }
+
+    else{
+      
+      
+      this.personajes.create(this.datos).subscribe(
 
         
         err => {
             console.error(err)
         }
         
-        
+       
     )
 
+    this.datos.id = null
+    this.datos.nombre = ""
+    this.datos.raza = ""
+    this.datos.clase = ""
+
+
+
+    }
+    
     // this.personajes.create(this.datos).subscribe(() => this.getPersonajes())
 }
 
@@ -49,6 +67,13 @@ export class FormPersonajesComponent implements OnInit {
       this.personajes.delete(datos.id).subscribe(() => console.log('datos borrados'))
       console.log(datos.id)
     }
+
+    edit(personaje : Personaje){
+      this.datos = personaje
+      this.datos.editMode = true
+    }
+
+
   }
 
 

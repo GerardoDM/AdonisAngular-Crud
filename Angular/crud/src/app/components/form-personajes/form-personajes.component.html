@@ -1,5 +1,5 @@
 <div>
-    <form>
+    <form class="mt-4 ml-4 mr-4 mb-4">
         <div class="form-group">
           <label>Nombre</label>
           <input type="text" class="form-control" name="nombre" placeholder="Enter name" [(ngModel)]="datos.nombre">
@@ -32,7 +32,11 @@
             <td>{{personaje.nombre}}</td>
             <td>{{personaje.raza}}</td>
             <td>{{personaje.clase}}</td>
-            <td><button type="submit" (click)="delete(personaje)" class="btn btn-danger">Delete</button></td>
+            <td>
+                <button type="submit" (click)="delete(personaje)" class="btn btn-danger">Delete</button>
+                <button type="submit" (click)="edit(personaje)" class="btn btn-secondary">Edit</button>
+            
+            </td>
           </tr>
           
         </tbody>

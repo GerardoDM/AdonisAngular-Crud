@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonajesService, Personaje} from 'src/app/personajes.service'
 
 import { Router } from '@angular/router'
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-form-personajes',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router'
 export class FormPersonajesComponent implements OnInit {
 
   datos: Personaje = {
-    id: 0,
+    id: null,
     nombre: "",
     raza: "",
     clase:"",
@@ -24,39 +25,26 @@ export class FormPersonajesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPersonajes()
+    console.log(this.datos.editMode)
   }
+
 
   create(){
 
-    if (this.datos.editMode = true){
-      return this.personajes.edit(this.datos).subscribe()
-    }
+    this.personajes.create(this.datos).subscribe(() =>
 
-    else{
-      
-      
-      this.personajes.create(this.datos).subscribe(
-
+    this.getPersonajes(),
         
-        err => {
-            console.error(err)
-        }
-        
-       
-    )
+      err => {
+          console.error(err)
+      }
+      
+  )
 
-    this.datos.id = null
-    this.datos.nombre = ""
-    this.datos.raza = ""
-    this.datos.clase = ""
-
-
-
-    }
     
-    // this.personajes.create(this.datos).subscribe(() => this.getPersonajes())
-}
-
+   } 
+    
+    
   getPersonajes(): void{
     this.personajes.getPersonajes().subscribe(personajesList => ( this.personajesList = personajesList))
 
@@ -71,7 +59,15 @@ export class FormPersonajesComponent implements OnInit {
     edit(personaje : Personaje){
       this.datos = personaje
       this.datos.editMode = true
+      console.log(this.datos.editMode)
+
     }
+
+    resetForm(form: NgForm){
+           
+      form.resetForm(); // or form.reset();
+      
+  }
 
 
   }

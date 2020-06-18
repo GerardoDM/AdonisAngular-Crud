@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
 
@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormPersonajesComponent } from './components/form-personajes/form-personajes.component';
+import { InterceptorService } from './interceptors/interceptor.service';
 
 const routes:Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -44,7 +45,11 @@ const routes:Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService, PersonajesService],
+  providers: [AuthService, PersonajesService,{
+    provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

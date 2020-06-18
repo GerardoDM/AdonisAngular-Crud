@@ -1,5 +1,5 @@
 <div>
-    <form class="mt-4 ml-4 mr-4 mb-4">
+    <form #myForm="ngForm" (ngSubmit)="myForm.reset()" class="mt-4 ml-4 mr-4 mb-4">
         <div class="form-group">
           <label>Nombre</label>
           <input type="text" class="form-control" name="nombre" placeholder="Enter name" [(ngModel)]="datos.nombre">

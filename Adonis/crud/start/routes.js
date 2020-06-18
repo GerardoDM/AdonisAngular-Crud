@@ -35,10 +35,10 @@ Route.group(() => {
 //Personajes
 Route.group(() => {
 
-  Route.post('create' , 'PersonajeController.create')
-  Route.delete('delete/:id', 'PersonajeController.destroy')
-  Route.patch('update/:id', 'PersonajeController.update')
-  Route.get('index', 'PersonajeController.index')
+  Route.post('create' , 'PersonajeController.create').middleware(['auth'])
+  Route.delete('delete/:id', 'PersonajeController.destroy').middleware(['auth'])
+  Route.patch('update/:id', 'PersonajeController.update').middleware(['auth'])
+  Route.get('index', 'PersonajeController.index').middleware(['auth'])
 
 }).prefix('personajes')
 

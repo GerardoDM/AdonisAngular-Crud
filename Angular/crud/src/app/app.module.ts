@@ -6,15 +6,18 @@ import { RouterModule, Routes } from '@angular/router'
 
 
 import { AuthService } from './auth.service';
+import { PersonajesService } from './personajes.service';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FormPersonajesComponent } from './components/form-personajes/form-personajes.component';
 
 const routes:Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'form', component: FormPersonajesComponent}
 
 ]
 @NgModule({
@@ -22,14 +25,16 @@ const routes:Routes = [
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormPersonajesComponent
   ],
   exports: [
 
     AppComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    FormPersonajesComponent
 
   ],
   imports: [
@@ -39,7 +44,7 @@ const routes:Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [AuthService],
+  providers: [AuthService, PersonajesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@
             <input type="text" class="form-control" name="clase" placeholder="Enter class" [(ngModel)]="datos.clase">
           </div>
        
-        <button type="submit" (click)="create()" class="btn btn-primary">Submit</button>
+        <button id="btnSubmit" type="submit" (click)="create()" class="btn btn-primary">Submit</button>
       </form>
 
       <table class="table table-hover table-dark">
@@ -34,7 +34,7 @@
             <td>{{personaje.clase}}</td>
             <td>
                 <button type="submit" (click)="delete(personaje)" class="btn btn-danger">Delete</button>
-                <button type="submit" (click)="edit(personaje)" class="btn btn-secondary">Edit</button>
+                <button type="submit" (click)="edit(personaje); foo()" class="btn btn-secondary">Edit</button>
             
             </td>
           </tr>

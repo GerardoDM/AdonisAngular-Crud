@@ -43,6 +43,21 @@ export class FormPersonajesComponent implements OnInit {
 
     
    } 
+
+    update(){
+
+    this.personajes.edit(this.datos).subscribe(() =>
+
+    this.getPersonajes(),
+        
+      err => {
+          console.error(err)
+      }
+      
+  )
+
+    
+   } 
     
     
   getPersonajes(): void{
@@ -67,6 +82,18 @@ export class FormPersonajesComponent implements OnInit {
            
       form.resetForm(); // or form.reset();
       
+  }
+
+      foo(){
+
+    // document.getElementById( "btnSubmit" ).setAttribute("onclick", function() { runCommand() });
+     
+    //  $('#btnSubmit').attr('onClick', 'update()');
+
+   
+    
+
+    console.log("foo")
   }
 
 

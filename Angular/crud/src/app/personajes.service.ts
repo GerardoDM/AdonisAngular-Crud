@@ -13,12 +13,28 @@ export interface Personaje {
   clase: string
 }
 
+
+
 @Injectable()
 export class PersonajesService {
+
+
 
   constructor(private http:HttpClient, private router:Router) { }
 
   public create(personaje: Personaje): Observable<any>{
     return this.http.post('personajes/create', personaje)
-}
+  }
+
+
+    public getPersonajes(): Observable<Personaje[]>{
+      return this.http.get<Personaje[]>('personajes/index')
+    }
+
+    public delete(id: number): Observable<{}>{
+
+      const url  = `personaje/delete/${id}`
+      return this.http.delete(url)
+
+    }
 }

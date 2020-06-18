@@ -15,4 +15,15 @@
        
         <button type="submit" (click)="create()" class="btn btn-primary">Submit</button>
       </form>
+    <ul class="list-group">
+        <li 
+        *ngFor="let personaje of personajesList"
+        class="list-group-item">{{personaje.nombre}}
+       
+
+        <button type="button" (click)="delete(personaje)" class="btn btn-danger">Delete</button>
+        </li>
+        
+      </ul>
+   
 </div>

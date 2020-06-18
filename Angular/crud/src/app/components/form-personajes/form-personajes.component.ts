@@ -46,7 +46,8 @@ export class FormPersonajesComponent implements OnInit {
 
     delete(datos: Personaje): void {
       this.personajesList = this.personajesList.filter(h => h !== datos)
-      this.personajes.delete(datos.id)
+      this.personajes.delete(datos.id).subscribe(() => console.log('datos borrados'))
+      console.log(datos.id)
     }
   }
 

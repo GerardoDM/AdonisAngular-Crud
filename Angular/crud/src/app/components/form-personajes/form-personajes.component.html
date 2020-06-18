@@ -15,15 +15,27 @@
        
         <button type="submit" (click)="create()" class="btn btn-primary">Submit</button>
       </form>
-    <ul class="list-group">
-        <li 
-        *ngFor="let personaje of personajesList"
-        class="list-group-item">{{personaje.nombre}}
-       
 
-        <button type="button" (click)="delete(personaje)" class="btn btn-danger">Delete</button>
-        </li>
-        
-      </ul>
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>  
+            <th scope="col">Nombre</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Clase</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let personaje of personajesList">
+            <td>{{personaje.id}}</td>
+            <td>{{personaje.nombre}}</td>
+            <td>{{personaje.raza}}</td>
+            <td>{{personaje.clase}}</td>
+            <td><button type="submit" (click)="delete(personaje)" class="btn btn-danger">Delete</button></td>
+          </tr>
+          
+        </tbody>
+      </table>
    
 </div>

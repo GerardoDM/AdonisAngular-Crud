@@ -33,7 +33,7 @@ export class PersonajesService {
 
     public delete(id: number): Observable<{}>{
 
-      const url  = `personaje/delete/${id}`
+      const url  = `personajes/delete/${id}`
       return this.http.delete(url)
 
     }

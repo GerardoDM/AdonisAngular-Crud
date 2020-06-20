@@ -1,16 +1,20 @@
 <div> 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">CRUD</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
       <a routerLink="/login"href="/login" class="nav-item nav-link">Login</a>
       <a routerLink="/register"href="/register" class="nav-item nav-link">Register</a>
       <a routerLink="/dashboard" href="/dashboard"class="nav-item nav-link">Dashboard</a>
-      <a routerLink="/form" href="/form"class="nav-item nav-link">Personajes</a>
+     
+      <li *ngIf="auth.isAuthenticated()" class="nav-item">
+
+        <a routerLink="/form" href="/form"class="nav-item nav-link">Personajes</a>
+
+      </li>
       <li *ngIf="auth.isAuthenticated()" class="nav-item">
         <a class="nav-link" (click)="auth.logout()">Logout</a>
 

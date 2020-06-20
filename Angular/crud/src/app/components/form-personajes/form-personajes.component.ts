@@ -9,7 +9,11 @@ import { NgForm } from '@angular/forms';
   templateUrl: './form-personajes.component.html',
   styleUrls: ['./form-personajes.component.css']
 })
+
 export class FormPersonajesComponent implements OnInit {
+
+  //Boton edit
+  inboundClick = false;
 
   datos: Personaje = {
     id: null,
@@ -39,10 +43,9 @@ export class FormPersonajesComponent implements OnInit {
           console.error(err)
       }
       
-  )
-
-    
-   } 
+    )
+  
+  } 
 
     update(){
 
@@ -54,10 +57,9 @@ export class FormPersonajesComponent implements OnInit {
           console.error(err)
       }
       
-  )
+    )
 
-    
-   } 
+  } 
     
     
   getPersonajes(): void{
@@ -82,22 +84,16 @@ export class FormPersonajesComponent implements OnInit {
            
       form.resetForm(); // or form.reset();
       
-  }
+    }
 
-      foo(){
+    makeVisible():void{
+      this.inboundClick = true;
+      document.getElementById("btnSubmit").setAttribute("disabled", "disabled")
+    }
 
-    // document.getElementById( "btnSubmit" ).setAttribute("onclick", function() { runCommand() });
      
-    //  $('#btnSubmit').attr('onClick', 'update()');
 
-   
-    
-
-    console.log("foo")
-  }
-
-
-  }
+}
 
 
 

@@ -19,15 +19,16 @@ const PersonajeController = require('../app/Controllers/Http/PersonajeController
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
-})
+
 
 //Users
 Route.group(() => {
 
   Route.post('login' , 'UserController.login')
   Route.post('register' , 'UserController.register')
+  Route.get('show/:id', 'UserController.showUser')
+  Route.get('index', 'UserController.index')
+  
 
 }).prefix('users')
 
@@ -39,8 +40,20 @@ Route.group(() => {
   Route.delete('delete/:id', 'PersonajeController.destroy').middleware(['auth'])
   Route.patch('update/:id', 'PersonajeController.update').middleware(['auth'])
   Route.get('index', 'PersonajeController.index').middleware(['auth'])
+  Route.get('show/:userID', 'PersonajeController.show')
 
 }).prefix('personajes')
+
+
+Route.group(() => {
+
+  Route.post('store' , 'WeaponController.store')
+  Route.get('index' , 'WeaponController.index')
+  Route.get('show' , 'WeaponController.show')
+  Route.get('show/:userID', 'WeaponController.show')
+ 
+
+}).prefix('weapons')
 
 
 

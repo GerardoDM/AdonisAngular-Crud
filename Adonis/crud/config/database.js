@@ -16,7 +16,7 @@ module.exports = {
   | interacting with SQL databases.
   |
   */
-  connection: Env.get('DB_CONNECTION', 'sqlite'),
+  connection: Env.get('DB_CONNECTION', 'mysql'),
 
   /*
   |--------------------------------------------------------------------------
@@ -51,11 +51,11 @@ module.exports = {
   mysql: {
     client: 'mysql',
     connection: {
-      host: Env.get('DB_HOST', 'localhost'),
-      port: Env.get('DB_PORT', ''),
-      user: Env.get('DB_USER', 'root'),
-      password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      host: Env.get('MYSQL_DB_HOST', 'localhost'),
+      port: Env.get('MYSQL_DB_PORT', ''),
+      user: Env.get('MYSQL_DB_USER', 'root'),
+      password: Env.get('MYSQL_DB_PASSWORD', ''),
+      database: Env.get('MYSQL_DB_DATABASE', 'adonis')
     },
     debug: Env.get('DB_DEBUG', false)
   },
@@ -80,5 +80,38 @@ module.exports = {
       database: Env.get('DB_DATABASE', 'adonis')
     },
     debug: Env.get('DB_DEBUG', false)
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | MongoDB
+  |--------------------------------------------------------------------------
+  |
+  | Here we define connection settings for MongoDB database.
+  |
+  */
+ mongodb: {
+  client: 'mongodb',
+  connectionString: Env.get('MONGO_CONNECTION_STRING', ''),
+  connection: {
+    host: Env.get('MONGO_HOST', 'localhost'),
+    port: Env.get('MONGO_PORT', 27017),
+    user: Env.get('MONGO_USER', 'admin'),
+    pass: Env.get('MONGO_PASSWORD', 'admin'),
+    database: Env.get('MONGO_DATABASE', 'pruebaAdonis'),
+    options: {
+      // All options can be found at http://mongoosejs.com/docs/connections.html
+      useUnifiedTopology: true,
+      useNewUrlParser: true 
+    },
+    debug: true
   }
+},
+
+ 
+      
+    
+  
+
+  
 }

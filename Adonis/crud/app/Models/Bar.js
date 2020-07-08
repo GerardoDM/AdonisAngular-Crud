@@ -1,13 +1,15 @@
 'use strict'
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
-const Model = use('Model')
+const Model = use('MongoModel')
 
-class Token extends Model {
+class Bar extends Model {
 
     static get connection(){
-        return 'mysql'
+        return 'mongodb';
     }
+
+   
 }
 
-module.exports = Token
+module.exports = Bar

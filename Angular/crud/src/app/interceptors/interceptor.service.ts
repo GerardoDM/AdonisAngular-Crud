@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 export class InterceptorService implements HttpInterceptor {
 
   constructor(public auth:AuthService) { }
-
+  
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
   const headers = new HttpHeaders({

@@ -23,6 +23,21 @@ class UserController {
 
 
     }
+
+    async showUser ({params}){
+        const user = await User.find(params.id)
+        const res = {
+            username: user.username
+        }
+
+        return user
+
+    }
+
+    async index({}){
+        let users = User.all()
+        return users;
+    }
 }
 
 module.exports = UserController

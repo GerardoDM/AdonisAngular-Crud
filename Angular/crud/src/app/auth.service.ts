@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators'
 import {Router} from '@angular/router'
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface'
 
 export interface User {
@@ -49,6 +50,24 @@ export class AuthService{
             return this.token
         }
 
+        public getDetalles(): User {
+            const token = this.getToken()
+    
+            let payload
+            if(token){
+                payload = token.split('.')[1]
+                 payload = window.atob(payload)
+            
+                return JSON.parse(payload)
+            }
+
+            else{
+                return null
+                
+            }
+
+        }
+
         public register(user: TokenPaylaod): Observable<any>{
             return this.http.post('users/register', user)
         }
@@ -70,10 +89,18 @@ export class AuthService{
         }
 
         public logout(): void{
+        
             this.token = ""
             window.localStorage.removeItem('token')
             this.router.navigateByUrl('login')
+            
         }
 
+         public getUser(id): Observable<any>{
+
+             return this.http.get(`users/show/${id}`)
+         }
+
+        
     
 }

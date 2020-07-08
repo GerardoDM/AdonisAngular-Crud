@@ -1,0 +1,41 @@
+<div>
+    <form #myForm="ngForm" (ngSubmit)="myForm.reset()" style="width: 600px;" class="mt-4 ml-4 mr-4 mb-4">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter name" [(ngModel)]="datos.name">
+          
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <input type="text" class="form-control"  name="type" placeholder="Enter type" [(ngModel)]="datos.type">
+           
+          </div>
+        
+       
+        <button id="btnSubmit" type="submit" (click)="create()" class="btn btn-primary">Submit</button>
+            
+    
+      </form>
+
+      <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+          
+            <th scope="col">Name</th>
+            <th scope="col">Tipe</th>
+          
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let weapon of weaponsList">
+            <td>{{weapon.name}}</td>
+            <td>{{weapon.type}}</td>
+          
+           
+          </tr>
+          
+        </tbody>
+      </table>
+   
+</div>

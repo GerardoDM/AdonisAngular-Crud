@@ -33,6 +33,14 @@ class PersonajeController {
         return personaje;
     }
 
+    async show({params, request}){
+        const {id} = params;
+        const personaje = await Personaje.find(id);
+       
+        
+        return personaje;
+    }
+
     async index ({response}) {
         let personajes = await Personaje.all()
 

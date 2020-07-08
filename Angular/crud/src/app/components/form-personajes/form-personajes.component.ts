@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PersonajesService, Personaje} from 'src/app/personajes.service'
 
 import { Router } from '@angular/router'
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { InteractionService } from 'src/app/interaction.service';
 
 @Component({
   selector: 'app-form-personajes',
@@ -24,13 +25,26 @@ export class FormPersonajesComponent implements OnInit {
 }
 
   personajesList : Personaje[]
+  
 
-  constructor(private personajes: PersonajesService, private router: Router) { }
+  constructor(private personajes: PersonajesService, private router: Router, private interaccion : InteractionService) { }
 
   ngOnInit(): void {
     this.getPersonajes()
-    console.log(this.datos.editMode)
+  
   }
+
+  mandarDatos(datos: Personaje){
+    this.interaccion.mandarMensaje(datos)
+    
+  }
+
+  onSelect(datos : Personaje){
+    this.router.navigate(['profile', datos.id, datos.nombre, datos.raza])
+  }
+
+  
+
 
 
   create(){
@@ -90,6 +104,10 @@ export class FormPersonajesComponent implements OnInit {
       this.inboundClick = true;
       document.getElementById("btnSubmit").setAttribute("disabled", "disabled")
     }
+
+   
+
+    
 
      
 

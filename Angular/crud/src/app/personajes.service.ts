@@ -43,4 +43,9 @@ export class PersonajesService {
       const url  = `personajes/update/${personaje.id}`
       return this.http.patch<Personaje>(url, personaje)
     }
+
+    public show(personaje: Personaje): Observable<Personaje>{
+      const url  = `personajes/show/${personaje.id}`
+      return this.http.get<Personaje>(url)
+    }
 }

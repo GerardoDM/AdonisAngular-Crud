@@ -7,6 +7,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface'
+import { ApiPaths } from 'src/enums/api-paths'
+import { environment } from 'src/environments/environment'
+import { EnvService } from './Services/env.service'
 
 export interface User {
     id: number
@@ -26,8 +29,10 @@ export interface TokenPaylaod {
 
 @Injectable()
 export class AuthService{
+
+    baseUrl = environment.baseUrl
     private token: string
-    constructor (private http:HttpClient, private router:Router, private jwtHelper: JwtHelperService){}
+    constructor (private http:HttpClient, private router:Router, private jwtHelper: JwtHelperService, private env: EnvService){}
 
         private guardarToken(token: string): void {
             localStorage.setItem('token', token)
@@ -69,11 +74,17 @@ export class AuthService{
         }
 
         public register(user: TokenPaylaod): Observable<any>{
-            return this.http.post('users/register', user)
+            let url = `${this.baseUrl}/users/register`;
+
+            return this.http.post(url, user)
         }
 
         public login(user: TokenPaylaod): Observable<any>{
-            const base = this.http.post('users/login', user)
+            let url = `${this.baseUrl}/users/login`;
+
+            const base = this.http.post(url, user)
+
+          //  const base = this.http.post('users/login', user)
 
             const request = base.pipe(
                 map((data: Token) => {

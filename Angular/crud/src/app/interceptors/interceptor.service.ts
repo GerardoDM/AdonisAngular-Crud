@@ -13,6 +13,10 @@ export class InterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
   const headers = new HttpHeaders({
+    "Access-Control-Allow-Origin" : '*',
+    
+    
+
     Authorization: `Bearer ${this.auth.getToken()}`
   })
 

@@ -21,7 +21,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/env.js" 
             ],
             "styles": [
               "src/styles.css"
@@ -62,8 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "crud:build",
-            "proxyConfig": "proxy.conf.json"
+            "browserTarget": "crud:build"
+            
 
           },
           "configurations": {

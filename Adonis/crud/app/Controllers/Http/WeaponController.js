@@ -54,8 +54,25 @@ class WeaponController {
             console.log(error)
             
         }
+
+        
        
 
+    }
+
+    async destroy({params}){
+        const {_id} = params;
+        const bar = await Bar.find(_id)
+        await bar.delete();
+        return bar;
+    }
+
+    async update({params, request}){
+        const {_id} = params;
+        const bar = await Bar.find(_id);
+        bar.merge(request.all())
+        await bar.save();
+        return bar;
     }
 
 }

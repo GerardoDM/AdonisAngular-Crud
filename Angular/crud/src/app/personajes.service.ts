@@ -5,6 +5,13 @@ import {map} from 'rxjs/operators'
 import {Router} from '@angular/router'
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface'
 import { User } from './auth.service';
+import { environment } from 'src/environments/environment';
+import { IMPLICIT_REFERENCE } from '@angular/compiler/src/render3/view/util';
+import { ApiPaths } from '../enums/api-paths';
+import { EnvService } from './Services/env.service';
+
+
+ 
 
 export interface Personaje {
   id: number
@@ -20,32 +27,52 @@ export interface Personaje {
 export class PersonajesService {
 
 
+  baseUrl = environment.baseUrl
 
-  constructor(private http:HttpClient, private router:Router) { }
+
+  constructor(private http:HttpClient, private router:Router, private env: EnvService) { }
 
   public create(personaje: Personaje): Observable<any>{
-    return this.http.post('personajes/create', personaje)
+
+    let url = `${this.env.apiUrl}/personajes/create`
+    // let url = `/personajes/create`;
+    return this.http.post(url, personaje)
   }
 
+  
 
     public getPersonajes(): Observable<Personaje[]>{
-      return this.http.get<Personaje[]>('personajes/index')
+     // let url = `${this.baseUrl}/personajes/index`;
+      let url = `${this.env.apiUrl}/personajes/index`
+
+      console.log(url)
+
+      return this.http.get<Personaje[]>(url)
+      
     }
 
     public delete(id: number): Observable<{}>{
 
-      const url  = `personajes/delete/${id}`
+      let url = `${this.env.apiUrl}/personajes/index`
+
+    //  let url = `${this.baseUrl}/${ApiPaths.personajes}/delete/${id}`;
+
+     // const url  = `personajes/delete/${id}`
       return this.http.delete(url)
 
     }
 
     public edit(personaje: Personaje): Observable<Personaje>{
-      const url  = `personajes/update/${personaje.id}`
+      let url = `${this.baseUrl}/personajes/update/${personaje.id}`;
+
+     // const url  = `personajes/update/${personaje.id}`
       return this.http.patch<Personaje>(url, personaje)
     }
 
     public show(personaje: Personaje): Observable<Personaje>{
-      const url  = `personajes/show/${personaje.id}`
+      let url = `${this.baseUrl}/personajes/show/${personaje.id}`;
+
+      //const url  = `personajes/show/${personaje.id}`
       return this.http.get<Personaje>(url)
     }
 }

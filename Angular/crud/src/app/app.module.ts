@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { RouterModule, Routes } from '@angular/router'
 import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-
 import { AuthService } from './auth.service';
 import { PersonajesService } from './personajes.service';
 import { AppComponent } from './app.component';
@@ -18,6 +17,7 @@ import { WeaponsComponent } from './components/weapons/weapons.component';
 import { WeaponService } from './Services/weapon.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { InteractionService } from './interaction.service';
+import { EnvServiceProvider } from './Services/env.service.provider';
 
 const routes:Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -70,7 +70,7 @@ const routes:Routes = [
     
 
   ],
-  providers: [AuthService, AuthGuardService, InteractionService , WeaponService, JwtHelperService, PersonajesService,{
+  providers: [AuthService, AuthGuardService, InteractionService , WeaponService, JwtHelperService, EnvServiceProvider ,PersonajesService,{
     provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true

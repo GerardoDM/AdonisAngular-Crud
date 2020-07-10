@@ -49,8 +49,9 @@ Route.group(() => {
 
   Route.post('store' , 'WeaponController.store')
   Route.get('index' , 'WeaponController.index')
-  Route.get('show' , 'WeaponController.show')
   Route.get('show/:userID', 'WeaponController.show')
+  Route.delete('destroy/:_id', 'WeaponController.destroy')
+  Route.patch('update/:_id', 'WeaponController.update')
  
 
 }).prefix('weapons')

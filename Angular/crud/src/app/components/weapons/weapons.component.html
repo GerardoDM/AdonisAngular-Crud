@@ -13,6 +13,11 @@
         
        
         <button id="btnSubmit" type="submit" (click)="create()" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary ml-2" 
+        [hidden]="!inboundClick" 
+        (click)="inboundClick = !inboundClick; update()" 
+            
+            >Edit</button>
             
     
       </form>
@@ -20,17 +25,25 @@
       <table class="table table-hover table-dark">
         <thead>
           <tr>
+
+            <th scope="col">_id</th>
           
             <th scope="col">Name</th>
             <th scope="col">Tipe</th>
+            <th scope="col">Accion</th>
           
            
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let weapon of weaponsList">
+            <td>{{weapon._id}}</td>
             <td>{{weapon.name}}</td>
             <td>{{weapon.type}}</td>
+            <td>
+              <button type="submit" (click)="delete(weapon)"class="btn btn-danger">Delete</button>
+              <button type="submit" (click)="edit(weapon); makeVisible()" class="btn btn-secondary">Edit</button>
+            </td>
           
            
           </tr>

@@ -23,10 +23,11 @@ export class ProfileComponent implements OnInit {
 }
 
   datosWeapon : Weapon = {
-    object_id : null,
+    _id : "",
     name : "",
     type : "",
-    userID: null
+    userID: null,
+    editMode: false
   }
 
 

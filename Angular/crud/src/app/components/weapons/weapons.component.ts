@@ -14,11 +14,14 @@ import { Personaje } from 'src/app/personajes.service';
 })
 export class WeaponsComponent implements OnInit {
 
+  inboundClick = false;
+
   datos: Weapon = {
-    object_id: "",
+    _id: "",
     name: "",
     type: "",
-    userID: null
+    userID: null,
+    editMode: false
    
     
 }
@@ -60,6 +63,38 @@ weaponsList : Weapon[]
     )
     
   } 
+
+  update(){
+
+    this.weapons.edit(this.datos).subscribe(() =>
+
+    this.getWeapons(),
+        
+      err => {
+          console.error(err)
+      }
+      
+    )
+
+  }
+
+  delete(datos: Weapon): void {
+    this.weaponsList = this.weaponsList.filter(h => h !== datos)
+    this.weapons.delete(datos._id).subscribe(() => console.log('datos borrados'))
+    console.log(datos._id)
+  }
+
+  edit(weapon : Weapon){
+    this.datos = weapon
+    this.datos.editMode = true
+    console.log(this.datos.editMode)
+
+  }
+
+  makeVisible():void{
+    this.inboundClick = true;
+    document.getElementById("btnSubmit").setAttribute("disabled", "disabled")
+  }
 
   
   resetForm(form: NgForm){
